@@ -1,7 +1,7 @@
+import DashboardIcon from '@mui/icons-material/Dashboard'
 import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
-import DashboardIcon from '@mui/icons-material/Dashboard'
-import VpnLookIcon from '@mui/icons-material/VpnLock'
+import VpnLockIcon from '@mui/icons-material/VpnLock'
 import AddToDriveIcon from '@mui/icons-material/AddToDrive'
 import BoltIcon from '@mui/icons-material/Bolt'
 import FilterListIcon from '@mui/icons-material/FilterList'
@@ -10,8 +10,9 @@ import AvatarGroup from '@mui/material/AvatarGroup'
 import Tooltip from '@mui/material/Tooltip'
 import Button from '@mui/material/Button'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
+import { capitalizeFirstLetter } from '~/utils/formatter'
 
-const MENU_STYLES = {
+const MENU_STYLES ={
   color: 'white',
   bgcolor: 'transparent',
   border: 'none',
@@ -24,8 +25,7 @@ const MENU_STYLES = {
     bgcolor: 'primary.50'
   }
 }
-
-function BoardBar() {
+function BoardBar({ board }) {
   return (
     <Box
       sx={{
@@ -37,39 +37,43 @@ function BoardBar() {
         gap: 2,
         paddingX: 2,
         overflowX: 'auto',
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#34495e' : '#1976d2'),
-        borderBottom: '1px solid white'
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#34495e' : '#1976d2')
       }}
     >
+      {/* Board bar content goes here */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Chip
           sx={MENU_STYLES}
-          icon={<DashboardIcon />}
-          label="HUST MERN Stack Board"
+          icon={<DashboardIcon/>}
+          label={board?.title}
           clickable
         />
+
         <Chip
           sx={MENU_STYLES}
-          icon={<VpnLookIcon />}
-          label="Public/Private Workspace"
+          icon={<VpnLockIcon/>}
+          label={capitalizeFirstLetter(board?.type)}
           clickable
         />
+
         <Chip
           sx={MENU_STYLES}
-          icon={<AddToDriveIcon />}
+          icon={<AddToDriveIcon/>}
           label="Add To Google Drive"
           clickable
         />
+
         <Chip
           sx={MENU_STYLES}
-          icon={<BoltIcon />}
+          icon={<BoltIcon/>}
           label="Automation"
           clickable
         />
+
         <Chip
           sx={MENU_STYLES}
-          icon={<FilterListIcon />}
-          label="Filter"
+          icon={<FilterListIcon/>}
+          label="Filters"
           clickable
         />
       </Box>
